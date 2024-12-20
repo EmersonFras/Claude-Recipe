@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 function Form() {
     const [ingredients, setIngredients] = useState([]);
+    const [recipeShown, setRecipeShown] = useState(false)
     
 
     const ingredientList = ingredients.map((ingredient) => (
@@ -11,6 +12,10 @@ function Form() {
     function addIngredient(formData) {
         const newIngredient = formData.get("ingredient")
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    }
+
+    function handleRecipeClick() {
+        setRecipeShown(prevRecipeShown => !prevRecipeShown)
     }
 
     return (
@@ -43,11 +48,11 @@ function Form() {
                         <h3>Ready for a recipe?</h3>
                         <p>Generate a recipe from your list of ingredients.</p>
                     </div>
-                    <button>Get a recipe</button>
+                    <button onClick={handleRecipeClick}>Get a recipe</button>
                 </div>
             }
 
-            { false && <section>
+            { recipeShown && <section>
                 <h2>Chef Claude Recommends:</h2>
                 <article className="suggested-recipe-container" aria-live="polite">
                     <p>Based on the ingredients you have available, I would recommend making a simple a delicious <strong>Beef Bolognese Pasta</strong>. Here is the recipe:</p>
