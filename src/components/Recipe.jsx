@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
 function Recipe({ recipe }) {
 
@@ -6,7 +7,7 @@ function Recipe({ recipe }) {
     <section>
         <h2>Chef GPT Recommends:</h2>
         <article className="suggested-recipe-container" aria-live="polite">
-            {recipe}
+          <ReactMarkdown children={recipe} />
         </article>
     </section>
   )

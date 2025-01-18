@@ -6,6 +6,7 @@ import { getRecipeFromChefGPT } from './ai'
 function Form() {
     const [ingredients, setIngredients] = useState([])
     const [recipe, setRecipe] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     
     
     function addIngredient(formData) {
@@ -14,7 +15,9 @@ function Form() {
     }
 
     async function getRecipe() {
+        setIsLoading(true)
         const recipeMrkDwn = await getRecipeFromChefGPT(ingredients)
+        setIsLoading(false)
         setRecipe(recipeMrkDwn)
     }
 
@@ -33,7 +36,7 @@ function Form() {
             <IngredientList ingredients={ingredients} getRecipe={getRecipe} />
             
             
-
+            {isLoading && <h2>Generating recipe...</h2>}
             {recipe && <Recipe recipe={recipe} />}
             
         </main>
