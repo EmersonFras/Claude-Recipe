@@ -1,10 +1,10 @@
-import chefClaude from '../assets/chef-claude.png'
+import chefGPT from '../assets/chef-GPT.png'
 
 function Header() {
   return (
     <div className='header'>
-      <img className='logo' src={chefClaude} alt="Chef Claude Logo" />
-      <h1 className='title'>Chef Claude</h1>
+      <img className='logo' src={chefGPT} alt="Chef GPT Logo" />
+      <h1 className='title'>Chef GPT</h1>
     </div>
   )
 }
