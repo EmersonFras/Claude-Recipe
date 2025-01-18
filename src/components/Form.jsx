@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import Recipe from './Recipe'
 import IngredientList from './IngredientList'
+import { getRecipeFromChefGPT } from './ai'
 
 function Form() {
-    const [ingredients, setIngredients] = useState([]);
-    const [recipeShown, setRecipeShown] = useState(false)
+    const [ingredients, setIngredients] = useState([])
+    const [recipe, setRecipe] = useState('')
     
     
     function addIngredient(formData) {
@@ -12,8 +13,9 @@ function Form() {
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
-    function handleRecipeClick() {
-        setRecipeShown(prevRecipeShown => !prevRecipeShown)
+    async function getRecipe() {
+        const recipeMrkDwn = await getRecipeFromChefGPT(ingredients)
+        setRecipe(recipeMrkDwn)
     }
 
     return (
@@ -28,11 +30,11 @@ function Form() {
                 <button>Add Ingredient</button>
             </form>
 
-            <IngredientList ingredients={ingredients} handleRecipeClick={handleRecipeClick} />
+            <IngredientList ingredients={ingredients} getRecipe={getRecipe} />
             
             
 
-            {recipeShown && <Recipe />}
+            {recipe && <Recipe recipe={recipe} />}
             
         </main>
     )

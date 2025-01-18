@@ -1,6 +1,6 @@
 import React from 'react'
 
-function IngredientList({ ingredients, handleRecipeClick }) {
+function IngredientList({ ingredients, getRecipe }) {
     const ingredientList = ingredients.map((ingredient) => (
         <li key={ingredient}>{ingredient}</li>
     ))
@@ -22,7 +22,7 @@ function IngredientList({ ingredients, handleRecipeClick }) {
                         <h3>Ready for a recipe?</h3>
                         <p>Generate a recipe from your list of ingredients.</p>
                     </div>
-                    <button onClick={handleRecipeClick}>Get a recipe</button>
+                    <button onClick={getRecipe}>Get a recipe</button>
                 </div>
             }
         </section>
